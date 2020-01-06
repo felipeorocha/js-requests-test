@@ -12,6 +12,8 @@ const elementCreator = (el, content) => {
 const sendHttRequest = async (url, method, data) => {
   const response = await fetch(url, {
     method,
+    body: JSON.stringify(data),
+    headers: data ? { 'Content-Type': 'application/json' } : {}
   });
   const resData = await response.json();
   return resData;
@@ -24,7 +26,10 @@ const getData = () => {
 }
 
 const sendData = () => {
-
+  sendHttRequest('https://reqres.in/api/register', 'POST', {
+    email: 'test@hotmail.com',
+    password: 'test'
+  })
 }
 
 getButton.onclick = getData;
