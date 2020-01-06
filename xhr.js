@@ -9,14 +9,8 @@ const sendHttRequest = (method, url, data) => {
     if (data) {
       xhr.setRequestHeader('Content-Type', 'application/json');
     }
-    // xhr.onreadystatechange = function() { //disparado se o atributo readyState mudou de valor, exceto quando muda para
     xhr.onload = () => { // disparado quando a requisicao foi um sucesso (nao e suportado por todos os borwsers)
-      // if (xhr.readyState == 4 && xhr.status == 200) {
-        // console.log(JSON.parse(xhr.responseText));
-        // resolve(JSON.parse(xhr.response));
-        console.log(xhr.response);
-        resolve(xhr.response);
-      // }
+      resolve(xhr.response);
     }
     xhr.onerror = () => { // disparado se a requisicao falhar
       reject('error...');
@@ -42,8 +36,6 @@ const sendData = () => {
     console.log(err);
   });
 }
-
-// getButton.addEventListener('click', getData);
 
 getButton.onclick = getData;
 postButton.onclick = sendData;
